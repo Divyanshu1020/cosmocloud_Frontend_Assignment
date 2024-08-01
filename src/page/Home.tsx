@@ -34,8 +34,9 @@ export default function Home() {
   }, []);
 
   const deleteEmployee = async (id: string | undefined) => {
+    console.log('deleteEmployee', id);
     try {
-      await api.delete(`employee/${id}`);
+      await api.delete(`employee/${id}`, { data: { id: id } });
       setEmployees(employees.filter((employee) => employee._id !== id));
     } catch (error: unknown) {
       console.error("There was an error deleting the employee!", error);

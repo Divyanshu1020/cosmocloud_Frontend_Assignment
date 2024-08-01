@@ -9,7 +9,11 @@ interface Props {
 
 const UpdateEmployeeModal = ({ employee, onClose, onUpdate }: Props) => {
   const { register, handleSubmit } = useForm<Employee>({});
-  const onSubmit: SubmitHandler<Employee> = async (updatedEmployee) => {
+  const onSubmit: SubmitHandler<Employee> = async (data) => {
+    const updatedEmployee = {
+      ...data,
+      _id : employee._id,
+    };
     onUpdate(updatedEmployee);
   };
 
